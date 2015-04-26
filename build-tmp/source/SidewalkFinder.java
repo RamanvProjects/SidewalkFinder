@@ -17,11 +17,13 @@ public class SidewalkFinder extends PApplet {
 //First experimentation with using processing as a visualization system
 
 public void setup() {	
-  size(800, 400, "processing.core.PGraphicsRetina2D");
+	size(800, 400, "processing.core.PGraphicsRetina2D");
 }
 
 public void draw() {
-	
+	Agent age = new Agent(200, 300);
+
+	ellipse(age.getX(), age.getY(), 20, 20);
 }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "SidewalkFinder" };
