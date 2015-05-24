@@ -1,12 +1,18 @@
-public class Agent {
+import java.util.ArrayList;
+public class Agent1 {
 	private int x;
 	private int y;
 	private int momentumX;
 	private int momentumY;
+	private int destX;
+	private int destY;
+	//ArrayList<PVector> path = new ArrayList<PVector>();
 
-	public Agent(int x, int y) {
+	public Agent1(int x, int y, int destX, int destY) {
 		this.x = x;
 		this.y = y;
+		this.destX = destX;
+		this.destY = destY;
 	}
 
 	public int getX() {
@@ -17,6 +23,10 @@ public class Agent {
 		return y;
 	}
 	
+	public int[] getDest() {
+		return new int[]{destX, destY};
+	}
+
 	public int momentX() {
 		return momentumX;
 	}
