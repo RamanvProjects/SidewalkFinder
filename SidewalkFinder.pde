@@ -7,7 +7,7 @@ int width = 800;
 int height = 400;
 color col = color(66, 168, 237, 200);
 ArrayList<Agent> agents = new ArrayList<Agent>();
-boolean drawPaths = false;
+boolean drawPaths = true;
 //try making gravity sim
 //as an example
 
@@ -30,6 +30,8 @@ void setup() {
 
 void draw() {
 	background(22);
+	drawGrid(20, 10);
+
 	for (int i = 0; i < agents.size(); i ++) {
 		Agent a = agents.get(i);
 		update(a);
@@ -38,13 +40,27 @@ void draw() {
 		} else { 
 			ellipse(a.getX(), a.getY(), 20, 20);
 			if (drawPaths) {
-				for (int j = 0; j < a.path.size() - 1; j ++) {
-					PVector p = a.path.get(j);
-					PVector p1 = a.path.get(j + 1);
-					line(p.x, p.y, p1.x, p1.y);
-				}
+				drawPath(a);
 			}
 		}
+	}
+}
+
+void drawPath(Agent a) {
+	for (int j = 0; j < a.path.size() - 1; j ++) {
+		PVector p = a.path.get(j);
+		PVector p1 = a.path.get(j + 1);
+		line(p.x, p.y, p1.x, p1.y);
+	}
+}
+
+void drawGrid(int gridWidth, int gridHeight) {
+	for (int i = 0; i < width; i += width/gridWidth) {
+		line(i, 0, i, height);
+	}
+
+	for (int i = 0; i < height; i += height/gridHeight) {
+		line(0, i, width, i);
 	}
 }
 
@@ -54,6 +70,12 @@ boolean isOutOfBounds(Agent a, int width, int height) {
 
 void update(Agent a) {
 	a.move();
+}
+
+void keyPressed() {
+	if (key == 'p') {
+		drawPaths = !drawPaths;
+	}
 }
 
 class Agent {
